@@ -1,0 +1,106 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#includeEtc "caseDicts/mesh/generation/snappyHexMeshDict.cfg"
+
+castellatedMesh on;
+snap            on;
+addLayers       on;
+
+geometry
+{
+    H45_W15_0
+    {
+        type triSurfaceMesh;
+        file "H45_W15_0.stl";
+    }
+
+    refinementBox
+    {
+        type searchableBox;
+        min  (-120 -27.5 0);
+        max  (220 105 50);
+    }
+
+};
+
+castellatedMeshControls
+{
+    features
+    (
+        { file  "H45_W15_0.eMesh"; level 5; }
+    );
+
+    refinementSurfaces
+    {
+        H45_W15_0
+        {
+            level (3 3);
+            patchInfo { type wall; }
+        }
+    }
+
+    refinementRegions
+    {
+        refinementBox
+        {
+            mode    inside;
+            level   5;
+        }
+    }
+
+    locationInMesh (1.5 5 111);
+}
+
+snapControls
+{
+    explicitFeatureSnap    true;
+    implicitFeatureSnap    false;
+}
+
+addLayersControls
+{
+    layers
+    {
+        "H45_W15_0"
+        {
+            nSurfaceLayers 5;
+        }
+    }
+
+    relativeSizes       true;
+    expansionRatio      1.5;
+    finalLayerThickness 0.5;
+    minThickness        1e-5;
+}
+
+meshQualityControls
+{
+    maxNonOrtho        65;
+    maxBoundarySkewness 20;
+    maxInternalSkewness 4;
+    minTetQuality       1e-9;
+}
+
+writeFlags
+(
+    scalarLevels
+    layerSets
+    layerFields
+);
+
+mergeTolerance 1e-6;
+
+// ************************************************************************* //

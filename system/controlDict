@@ -1,0 +1,65 @@
+/*-------------------------------ico-*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     pimpleFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         1100; // O tempo final da simulação. 
+
+deltaT          0.125; // Tamanho do passo de tempo.
+
+writeControl    runTime;
+
+writeInterval   20; // 
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision   6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+libs ("libatmosphericModels.so");
+
+adjustTimeStep  yes; // Permite ajustes automáticos do passo de tempo.
+
+maxCo           0.8; // Número de Courant máximo permitido.
+
+functions
+{
+    yPlus
+    {
+        type            yPlus;
+        libs        ("libfieldFunctionObjects.so");
+        writeControl    runTime;
+        writeInterval   20;
+        log             yes;
+    }
+}
+
+// ************************************************************************* //

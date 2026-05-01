@@ -1,0 +1,39 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      mapFieldsDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+sourceCase   "../H45_W15_0_ke_M10";
+
+mapMethod    direct;
+
+cuttingPatches ();
+
+patchMap
+(
+    inlet inlet
+    outlet outlet
+    frontAndBack frontAndBack
+    H45_W15_0 H45_W15_0
+);
+
+
+// ************************************************************************* //
+
+
+
+
+
