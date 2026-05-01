@@ -8,7 +8,7 @@ This simulation setup is part of the PhD research of Carolina Girotti:
 
 "Análise da morfologia urbana e da vegetação nos Eixos de Estruturação e Transformação Urbana do município de São Paulo: Aspectos da concentração e dispersão de poluentes atmosféricos"
 
-Faculty of Architecture and Urbanism and Design (FAU-USP)
+Faculty of Architecture and Urbanism and Design (FAU)
 University of São Paulo (USP)
 
 Part of this work was presented at:
